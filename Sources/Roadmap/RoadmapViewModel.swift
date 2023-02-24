@@ -16,6 +16,14 @@ final class RoadmapViewModel: ObservableObject {
         loadFeatures(roadmapJSONURL: configuration.roadmapJSONURL)
     }
 
+    var introduction: String {
+        return configuration.introduction
+    }
+
+    var style: RoadmapStyle {
+        return configuration.style
+    }
+
     func loadFeatures(roadmapJSONURL: URL) {
         Task { @MainActor in
             if configuration.shuffledOrder {

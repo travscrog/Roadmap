@@ -32,6 +32,12 @@ public struct RoadmapView: View {
         }
 #else
         List {
+            if !viewModel.introduction.isEmpty {
+                Text(viewModel.introduction)
+                    .font(viewModel.style.statusFont)
+                    .multilineTextAlignment(.center)
+            }
+
             ForEach(viewModel.features) { feature in
                 RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
                     .listRowSeparator(.hidden)

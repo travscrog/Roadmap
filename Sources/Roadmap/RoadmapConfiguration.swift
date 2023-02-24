@@ -16,6 +16,9 @@ public struct RoadmapConfiguration {
     /// See `https://countapi.xyz/` for more information.
     /// Defaults to your main bundle identifier.
     public let namespace: String
+
+    /// A (hopefully) brief, optional introduction to display above the features
+    public let introduction: String
     
     /// Pick a `RoadmapStyle` that fits your app best. By default the `.standard` option is used.
     public let style: RoadmapStyle
@@ -30,13 +33,14 @@ public struct RoadmapConfiguration {
     ///   See `https://countapi.xyz/` for more information.
     ///   Defaults to your main bundle identifier.
     ///   - style: Pick a `RoadmapStyle` that fits your app best. By default the `.standard` option is used.
-    public init(roadmapJSONURL: URL, namespace: String? = nil, style: RoadmapStyle = RoadmapTemplate.standard.style, shuffledOrder: Bool = false) {
+    public init(roadmapJSONURL: URL, namespace: String? = nil, introduction: String = "", style: RoadmapStyle = RoadmapTemplate.standard.style, shuffledOrder: Bool = false) {
         guard let namespace = namespace ?? Bundle.main.bundleIdentifier else {
             fatalError("Missing namespace")
         }
 
         self.roadmapJSONURL = roadmapJSONURL
         self.namespace = namespace
+        self.introduction = introduction
         self.style = style
         self.shuffledOrder = shuffledOrder
     }
@@ -44,6 +48,6 @@ public struct RoadmapConfiguration {
 
 extension RoadmapConfiguration {
     static func sample() -> RoadmapConfiguration {
-        .init(roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/vq2juq1xhg")!, namespace: "roadmaptest")
+        .init(roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/vq2juq1xhg")!, namespace: "roadmaptest", introduction: "This is a brief sample introduction. Hopefully it looks good! Maybe it needs to be a little longer so we can see how it behaves.")
     }
 }
